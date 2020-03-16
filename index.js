@@ -45,17 +45,38 @@ document.querySelectorAll('.digits button')
     document.querySelector('.eq').addEventListener('click', calculate)
 
     function calculate(){
-       if(eval(display.value)===Infinity){
+
+        if(display.value.includes("!")){
+            const num=parseFloat(display.value.slice(0,display.value.indexOf('!')));
+            let factorial=1;
+            let descNum=num;
+            while(descNum>0){
+                factorial*=descNum;
+                --descNum;
+            }
+            display.value=factorial;
+        }
+
+        if(display.value.includes("^")){
+            const base=parseFloat(display.value.slice(0,display.value.indexOf('^')));
+            const exp=parseFloat(display.value.slice(display.value.indexOf('^')+1));
+            display.value=Math.pow(base,exp);
+        }
+        
+       else if(eval(display.value)===Infinity){
            display.value="Division by zero! = infinity";
            divisionByZero=true;
        }
+       
        else if(String(eval(display.value)-parseInt(eval(display.value))).length>7){
           display.value=Number(eval(display.value)).toFixed(5);
        }
        else{
            display.value=eval(display.value);
        }
+
        finished=true;
+
     }
 
     //alert(display.value);
