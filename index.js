@@ -7,10 +7,21 @@ document.querySelectorAll('.digits button')
     }
 
     document.querySelectorAll('.operators button')
-    .forEach(button=>button.addEventListener('click', digitPressed));
+    .forEach(button=>button.addEventListener('click', operPressed));
 
-    function digitPressed(ev){
-       display.value+=ev.target.innerText;
+    function operPressed(ev){
+        if(display.value.length===0){
+            alert("Statement can't start with operators");
+        }
+        else{
+            
+            if("+-*/^!".includes(display.value[display.value.length-1])){
+                alert("Using two operators by each other is prohibited!");
+            }
+            else{
+                display.value+=ev.target.innerText;
+            } 
+        }
     }
 
     document.querySelector('.clear').addEventListener('click', clear)
@@ -25,7 +36,7 @@ document.querySelectorAll('.digits button')
        if(eval(display.value)===Infinity){
            display.value="Division by zero! = infinity";
        }
-       if(String(eval(display.value)-parseInt(eval(display.value))).length>7){
+       else if(String(eval(display.value)-parseInt(eval(display.value))).length>7){
            display.value=Number(eval(display.value)).toFixed(5);
        }
        else{
