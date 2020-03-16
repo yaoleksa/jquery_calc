@@ -87,5 +87,5 @@ function calculate() {
     finished = true;
 
 }
-
+     
 //alert(display.value);
