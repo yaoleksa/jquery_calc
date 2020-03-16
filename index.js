@@ -78,7 +78,7 @@ function calculate() {
         display.value = "Division by zero! = infinity";
         divisionByZero = true;
     }
-    else if (displat.value.slice(display.value.indexOf('.')+1).length > 7) {
+    else if (String(eval(display.value)-parseInt(eval(display.value))).length>7) {
         display.value = Number(eval(display.value)).toFixed(5);
     } else {
         display.value = eval(display.value);
