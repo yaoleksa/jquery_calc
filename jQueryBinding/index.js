@@ -1,0 +1,1 @@
+$("button").bind("click", function() { alert("YES!"); });
